@@ -1,0 +1,18 @@
+{
+    "name": "Hashtag Scrap",
+    "description": "scrapbox のhashtagを一覧化したい",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "action": {
+        "default_title": "HashtagScrap",
+        "default_popup": "popup.html"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://scrapbox.io/chococorone-study/*"],
+            "js": ["content.js"],
+            "run_at": "document_end"
+        }
+    ],
+    "permissions": ["storage"]
+}
