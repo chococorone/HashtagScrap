@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" />
         <title>HashTagScarp</title>
         <style>
             .center {
@@ -22,20 +22,43 @@
             .tags {
                 font-size: 1rem;
                 font-weight: bold;
+                display: flex;
+                justify-content: space-between;
+            }
+            .tag {
+            }
+            .close {
+                width: 30px; /*枠の大きさ*/
+                height: 30px; /*枠の大きさ*/
+                position: relative;
+                border: 2px solid #333; /* 枠の調整 */
+                border-radius: 50%; /* 丸みの度合い */
+            }
+            .close::before,
+            .close::after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 3px; /* 棒の幅（太さ） */
+                height: 22px; /* 棒の高さ */
+                background: #333;
+            }
+            .close::before {
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+            .close::after {
+                transform: translate(-50%, -50%) rotate(-45deg);
             }
         </style>
         <body>
             <div class="center">
-                <span class="text">
-                    hashtag's list
-                </span>
+                <span class="text"> hashtag's list </span>
 
-                <div id="hashtag_list">
-                </div>
+                <div id="hashtag_list"></div>
             </div>
 
-        <script src="popup.js"></script>
+            <script src="popup.js"></script>
         </body>
-
     </head>
 </html>
