@@ -5,12 +5,12 @@
     "manifest_version": 3,
     "action": {
         "default_title": "HashtagScrap",
-        "default_popup": "popup.html"
+        "default_popup": "/popup/popup.html"
     },
     "content_scripts": [
         {
             "matches": ["https://scrapbox.io/chococorone-study/*"],
-            "js": ["content.js"],
+            "js": ["/scripts/content.js"],
             "run_at": "document_end"
         }
     ],
