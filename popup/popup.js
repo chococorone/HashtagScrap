@@ -58,18 +58,33 @@ function extractHashtags(str) {
     return hashtags;
 }
 
-function createHashtagLinks(hashtags) {
+function createHashtagLinks(projectName, hashtags) {
     const links = {};
     hashtags.forEach((hashtag) => {
-        links[hashtag] = `https://scrapbox.io/${hashtag}`;
+        links[hashtag] = `https://scrapbox.io/${projectName}/${hashtag}`;
     });
     return links;
 }
 
 console.log('choco');
-getHashtags('chococorone-study').then((result) => {
-    const links = createHashtagLinks(result);
-    console.log(links);
+const targetUrl = 'https://scrapbox.io/';
+const targetStr = 'scrapbox.io';
 
-    updatePopup(links);
+chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    const currentUrl = tabs[0].url;
+
+    //popup.jsを押下したページのURLがscrapbox.io配下だった場合,ページのhashtagを表示する
+    if (currentUrl.includes(targetUrl)) {
+        const div = currentUrl.split('/');
+        const projectName = div[div.indexOf(targetStr) + 1];
+
+        getHashtags(projectName).then((result) => {
+            const links = createHashtagLinks(projectName, result);
+            console.log(links);
+            updatePopup(links);
+        });
+    } else {
+        //todo
+        console.log('error');
+    }
 });
