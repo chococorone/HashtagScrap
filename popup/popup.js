@@ -1,7 +1,7 @@
 function updatePopup(hashtags) {
     const list = document.getElementById('hashtag_list');
 
-    const keys = Object.keys(hashtags);
+    const keys = Object.keys(hashtags).sort();
 
     keys.forEach((key) => {
         let a_element = document.createElement('a');
